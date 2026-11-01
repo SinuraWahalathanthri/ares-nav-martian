@@ -287,13 +287,13 @@ martian-map/
 - [x] T2.3 `/design` style guide page.
 - **Done when:** all components visible on style-guide page, contrast checked, keyboard accessible.
 
-### Phase 3 — Boot, Mission Select & Planning Console (M0, M1, M2, M11)
-- [ ] T3.1 Boot sequence animation with data-link checks.
-- [ ] T3.2 Mission select (site, profile, sol/time).
-- [ ] T3.3 OpenLayers Mars projection; Mars Trek basemap; local high-res tiles.
-- [ ] T3.4 Layer stack panel (toggle, opacity, legend, provenance tooltip) for L1–L10, L16.
-- [ ] T3.5 Cursor readout (lat/lon, elevation, slope, TI, unit); scale bar; graticule.
-- [ ] T3.6 Data Sources & Credits screen.
+### Phase 3 — Boot, Mission Select & Planning Console (M0, M1, M2, M11) ✅ (2026-11-01; 16 layers in 5 data types, readout from on-board grids)
+- [x] T3.1 Boot sequence animation with data-link checks.
+- [x] T3.2 Mission select (site, profile, sol/time).
+- [x] T3.3 OpenLayers Mars projection; Mars Trek basemap; local high-res tiles.
+- [x] T3.4 Layer stack panel (toggle, opacity, legend, provenance tooltip) for L1–L10, L16.
+- [x] T3.5 Cursor readout (lat/lon, elevation, slope, TI, unit); scale bar; graticule.
+- [x] T3.6 Data Sources & Credits screen.
 - **Done when:** user can explore Gale site with ≥3 layer types blended and read values under cursor.
 
 ### Phase 4 — Route Navigator (M4)

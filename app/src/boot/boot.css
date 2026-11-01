@@ -1,0 +1,54 @@
+.boot {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: var(--space-4);
+}
+.boot__screen {
+  width: min(760px, 100%);
+}
+.boot__screen .crt__glass {
+  padding: var(--space-5);
+  min-height: 420px;
+}
+.boot__title {
+  font-size: var(--fs-6);
+  letter-spacing: 0.1em;
+}
+.boot__sub {
+  color: var(--phosphor-dim);
+  margin-bottom: var(--space-4);
+}
+.boot__steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--fs-4);
+}
+.boot__step {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.5ch;
+}
+.boot__step--warn span:last-child {
+  color: var(--caution);
+}
+.boot__step--fail span:last-child {
+  color: var(--warning);
+}
+.boot__go,
+.boot__skip {
+  margin-top: var(--space-5);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.boot__skip {
+  font-size: var(--fs-4);
+  color: var(--phosphor-dim);
+  text-decoration: underline;
+}
