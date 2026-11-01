@@ -1,14 +1,54 @@
-/* Design tokens from TASK-PLAN.md §5. The full design system arrives in Phase 2. */
+/* ARES//NAV design tokens (TASK-PLAN §5).
+   Two materials: painted avionics panel metal, and CRT glass set into it. */
 :root {
-  --phosphor-amber: #ffb000;
-  --phosphor-green: #33ff66;
-  --mars-rust: #c1440e;
-  --caution: #ffd23f;
-  --warning: #ff3b30;
-  --crt-black: #0a0806;
-  --panel: #15110d;
-  --grid: rgba(255, 176, 0, 0.12);
-  --mono: 'VT323', 'Share Tech Mono', ui-monospace, Consolas, monospace;
+  /* Panel metal — matte dark grey, engraved white legends */
+  --panel: #3a3c38;
+  --panel-hi: #4b4e49;
+  --panel-lo: #2b2c29;
+  --panel-edge: #1d1e1c;
+  --engrave: #e6e3d8;
+  --engrave-dim: #aeab9f;
+  --screw: #8c8e88;
+
+  /* CRT glass and phosphors */
+  --glass: #050906;
+  --amber: #ffb000;
+  --amber-dim: #8f6300;
+  --amber-ghost: rgba(255, 176, 0, 0.14);
+  --green: #3dff7f;
+  --green-dim: #1f8a45;
+  --green-ghost: rgba(61, 255, 127, 0.14);
+
+  /* Annunciator lamps */
+  --lamp-off: #23241f;
+  --advisory: #7fe0ff;
+  --caution: #ffc21a;
+  --warning: #ff3b2f;
+  --rust: #c1440e;
+
+  /* Type: B612 (Airbus cockpit display face) for panel legends,
+     VT323 for phosphor text, B612 Mono for numbers. */
+  --font-panel: 'B612', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'B612 Mono', ui-monospace, Consolas, monospace;
+  --font-crt: 'VT323', 'B612 Mono', ui-monospace, monospace;
+
+  /* Type scale (≈ perfect fourth) */
+  --fs-1: 0.75rem;
+  --fs-2: 0.875rem;
+  --fs-3: 1rem;
+  --fs-4: 1.333rem;
+  --fs-5: 1.777rem;
+  --fs-6: 2.369rem;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 40px;
+
+  --radius-panel: 6px;
+  --radius-glass: 14px;
 
   color-scheme: dark;
 }
@@ -17,27 +57,51 @@
   box-sizing: border-box;
 }
 
+html,
 body {
   margin: 0;
-  min-height: 100vh;
-  background: var(--crt-black);
-  color: var(--phosphor-amber);
-  font-family: var(--mono);
 }
 
-.crt {
+body {
   min-height: 100vh;
-  padding: 24px 16px;
-  background:
-    repeating-linear-gradient(to bottom, transparent 0 2px, rgba(0, 0, 0, 0.35) 2px 3px),
-    radial-gradient(ellipse at center, #1a120a 0%, var(--crt-black) 75%);
+  background-color: var(--panel-lo);
+  /* faint cast-paint texture */
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    radial-gradient(rgba(0, 0, 0, 0.18) 1px, transparent 1px);
+  background-size: 3px 3px, 5px 5px;
+  background-position: 0 0, 1px 2px;
+  color: var(--engrave);
+  font-family: var(--font-panel);
+  font-size: var(--fs-3);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
 
-.boot {
-  margin: 0 auto;
-  max-width: 72ch;
-  font-size: 18px;
-  line-height: 1.35;
-  white-space: pre-wrap;
-  text-shadow: 0 0 6px rgba(255, 176, 0, 0.6);
+:focus-visible {
+  outline: 2px solid var(--advisory);
+  outline-offset: 3px;
+}
+
+a {
+  color: inherit;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }

@@ -281,10 +281,10 @@ martian-map/
 - [x] T1.5 Local XYZ tiles and Three.js heightfield.
 - **Done when:** `app/public/data/gale/site.json` loads with ≥7 layers and passes validation.
 
-### Phase 2 — Retro Design System
-- [ ] T2.1 Tokens (colors, type, spacing), CRT effects (scanlines/bloom/flicker) + reduced-FX toggle.
-- [ ] T2.2 Components: bezel panel, knob/slider, toggle switch, 7-seg readout, teletype log, annunciator light, tabbed CRT screen, modal.
-- [ ] T2.3 `/design` style guide page.
+### Phase 2 — Retro Design System ✅ (2026-11-01; design bench at `#/design`; tabs became MFD bezel keys)
+- [x] T2.1 Tokens (colors, type, spacing), CRT effects (scanlines/bloom/flicker) + reduced-FX toggle.
+- [x] T2.2 Components: bezel panel, knob/slider, toggle switch, 7-seg readout, teletype log, annunciator light, tabbed CRT screen, modal.
+- [x] T2.3 `/design` style guide page.
 - **Done when:** all components visible on style-guide page, contrast checked, keyboard accessible.
 
 ### Phase 3 — Boot, Mission Select & Planning Console (M0, M1, M2, M11)

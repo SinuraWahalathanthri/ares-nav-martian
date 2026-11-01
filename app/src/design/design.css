@@ -1,0 +1,594 @@
+/* ARES//NAV component styles. Tokens live in src/index.css. */
+
+/* ───────────────────────── Panel (painted metal module) ───────────────────────── */
+.panel {
+  position: relative;
+  padding: var(--space-5) var(--space-4) var(--space-4);
+  border-radius: var(--radius-panel);
+  background: linear-gradient(180deg, var(--panel-hi), var(--panel) 18%, var(--panel) 85%, #353733);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.09),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.35),
+    0 0 0 1px var(--panel-edge),
+    0 6px 14px rgba(0, 0, 0, 0.45);
+}
+
+.panel__legend {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  font: 700 var(--fs-1) / 1 var(--font-panel);
+  letter-spacing: 0.14em;
+  color: var(--engrave);
+  white-space: nowrap;
+  /* engraved: dark cut below, light lip above */
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.6);
+}
+
+.panel__legend::before,
+.panel__legend::after {
+  content: '';
+  display: inline-block;
+  width: 18px;
+  height: 1px;
+  margin: 0 8px;
+  vertical-align: middle;
+  background: var(--engrave-dim);
+}
+
+.screw {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #b9bbb5, var(--screw) 45%, #4a4c47);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
+}
+.screw::after {
+  content: '';
+  position: absolute;
+  inset: 4px 1px;
+  background: #3b3d39;
+  transform: rotate(var(--screw-angle, 30deg));
+}
+.screw--tl { top: 6px; left: 6px; }
+.screw--tr { top: 6px; right: 6px; --screw-angle: -20deg; }
+.screw--bl { bottom: 6px; left: 6px; --screw-angle: 75deg; }
+.screw--br { bottom: 6px; right: 6px; --screw-angle: 10deg; }
+
+.engraved {
+  font: 700 var(--fs-1) / 1.2 var(--font-panel);
+  letter-spacing: 0.1em;
+  color: var(--engrave);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.6);
+}
+
+/* ───────────────────────── CRT screen ───────────────────────── */
+.crt {
+  --phosphor: var(--amber);
+  --phosphor-dim: var(--amber-dim);
+  --phosphor-ghost: var(--amber-ghost);
+  position: relative;
+  padding: 10px;
+  border-radius: calc(var(--radius-glass) + 6px);
+  background: #121311;
+  box-shadow:
+    inset 0 2px 6px rgba(0, 0, 0, 0.9),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.06);
+}
+.crt--green {
+  --phosphor: var(--green);
+  --phosphor-dim: var(--green-dim);
+  --phosphor-ghost: var(--green-ghost);
+}
+
+.crt__glass {
+  position: relative;
+  overflow: hidden;
+  min-height: 120px;
+  padding: var(--space-4) var(--space-4);
+  border-radius: var(--radius-glass);
+  background: radial-gradient(ellipse at 50% 45%, #0b120d 0%, var(--glass) 70%, #020302 100%);
+  color: var(--phosphor);
+  font: var(--fs-5) / 1.1 var(--font-crt);
+  text-shadow: 0 0 2px var(--phosphor), 0 0 9px var(--phosphor-dim);
+}
+
+/* scanlines + glass reflection + vignette */
+.crt__glass::before,
+.crt__glass::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+}
+.crt__glass::before {
+  background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0) 0 2px, rgba(0, 0, 0, 0.32) 2px 3px);
+  z-index: 2;
+}
+.crt__glass::after {
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0) 32%),
+    radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 58%, rgba(0, 0, 0, 0.55) 100%);
+  z-index: 3;
+}
+
+.crt__content {
+  position: relative;
+  z-index: 1;
+}
+
+:root[data-fx='full'] .crt__glass {
+  animation: crt-flicker 7s infinite steps(1);
+}
+:root[data-fx='full'] .crt--powering .crt__glass {
+  animation: crt-power-on 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes crt-power-on {
+  0% { transform: scale(0.02, 0.004); filter: brightness(4); }
+  35% { transform: scale(1, 0.006); filter: brightness(3); }
+  60% { transform: scale(1, 1); filter: brightness(1.8); }
+  100% { transform: scale(1, 1); filter: brightness(1); }
+}
+@keyframes crt-flicker {
+  0%, 100% { opacity: 1; }
+  48% { opacity: 0.96; }
+  49% { opacity: 1; }
+}
+
+:root[data-fx='reduced'] .crt__glass {
+  text-shadow: none;
+}
+:root[data-fx='reduced'] .crt__glass::before {
+  display: none;
+}
+
+/* inverse video for highlighted CRT text */
+.crt-inverse {
+  background: var(--phosphor);
+  color: var(--glass);
+  text-shadow: none;
+  padding: 0 0.25em;
+}
+
+.crt-dim {
+  color: var(--phosphor-dim);
+}
+
+/* ───────────────────────── MFD bezel buttons (tabs) ───────────────────────── */
+.mfd {
+  display: grid;
+  gap: var(--space-2);
+}
+.mfd__keys {
+  display: flex;
+  justify-content: space-around;
+  gap: var(--space-2);
+}
+.mfd-key {
+  min-width: 56px;
+  min-height: 34px;
+  padding: 4px 8px;
+  border: 0;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #2f302d, #1f201d);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 2px 0 #121311,
+    0 3px 4px rgba(0, 0, 0, 0.5);
+  color: var(--engrave);
+  font: 700 var(--fs-1) / 1 var(--font-panel);
+  letter-spacing: 0.08em;
+  cursor: pointer;
+}
+.mfd-key:active,
+.mfd-key[aria-selected='true'] {
+  transform: translateY(2px);
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.6),
+    0 0 0 #121311;
+}
+.mfd-key[aria-selected='true'] {
+  color: var(--amber);
+}
+.mfd__labels {
+  display: flex;
+  justify-content: space-around;
+  font: var(--fs-4) / 1 var(--font-crt);
+  margin-bottom: var(--space-3);
+}
+.mfd__labels span {
+  min-width: 56px;
+  text-align: center;
+}
+
+/* ───────────────────────── Knob ───────────────────────── */
+.knob {
+  display: inline-grid;
+  justify-items: center;
+  gap: var(--space-2);
+  user-select: none;
+  touch-action: none;
+}
+.knob__dial {
+  width: 76px;
+  height: 76px;
+  cursor: grab;
+  border-radius: 50%;
+}
+.knob__dial:active {
+  cursor: grabbing;
+}
+.knob__value {
+  font: 700 var(--fs-2) / 1 var(--font-mono);
+  color: var(--engrave);
+}
+
+/* ───────────────────────── Toggle switch (bat-handle) ───────────────────────── */
+.toggle {
+  display: inline-grid;
+  justify-items: center;
+  gap: 6px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+}
+.toggle__body {
+  position: relative;
+  width: 44px;
+  height: 64px;
+}
+.toggle__plate {
+  position: absolute;
+  inset: 20px 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #9a9c96, #5b5d58 60%, #2c2d2a);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+.toggle__bat {
+  position: absolute;
+  left: 50%;
+  top: 4px;
+  width: 12px;
+  height: 30px;
+  margin-left: -6px;
+  border-radius: 6px 6px 3px 3px;
+  background: linear-gradient(90deg, #d8dad4, #9a9c96 55%, #6d6f6a);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.6);
+  /* pivots at the centre of the mounting plate; off = flipped down */
+  transform-origin: 50% 100%;
+  transform: scaleY(-0.85);
+  transition: transform 120ms cubic-bezier(0.5, 1.8, 0.5, 0.8);
+}
+.toggle[aria-checked='true'] .toggle__bat {
+  transform: translateY(0) scaleY(1);
+}
+.toggle__state {
+  font: 700 var(--fs-1) / 1 var(--font-panel);
+  letter-spacing: 0.1em;
+  color: var(--engrave-dim);
+}
+.toggle__state--on {
+  margin-bottom: -2px;
+}
+.toggle[aria-checked='true'] .toggle__state--on,
+.toggle[aria-checked='false'] .toggle__state--off {
+  color: var(--engrave);
+}
+
+/* ───────────────────────── Seven-segment readout ───────────────────────── */
+.sevenseg {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 6px 10px;
+  border-radius: 4px;
+  background: #0a0b09;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.9), 0 0 0 1px #000;
+  color: var(--amber);
+}
+.sevenseg svg {
+  height: 40px;
+  width: auto;
+  overflow: visible;
+}
+.sevenseg__on {
+  fill: currentColor;
+}
+:root[data-fx='full'] .sevenseg__on {
+  filter: drop-shadow(0 0 3px currentColor);
+}
+.sevenseg__off {
+  fill: currentColor;
+  opacity: 0.08;
+}
+.sevenseg__unit {
+  font: 700 var(--fs-1) / 1 var(--font-panel);
+  letter-spacing: 0.08em;
+  color: var(--engrave-dim);
+  align-self: flex-end;
+}
+.sevenseg--green {
+  color: var(--green);
+}
+.sevenseg--red {
+  color: var(--warning);
+}
+
+/* ───────────────────────── Annunciator lamps ───────────────────────── */
+.annunciators {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: 6px;
+  padding: 6px;
+  background: #121311;
+  border-radius: 4px;
+}
+.lamp {
+  display: grid;
+  place-items: center;
+  min-height: 46px;
+  padding: 4px 6px;
+  border-radius: 2px;
+  background: var(--lamp-off);
+  box-shadow: inset 0 0 0 1px #000, inset 0 2px 6px rgba(0, 0, 0, 0.7);
+  font: 700 var(--fs-1) / 1.15 var(--font-panel);
+  letter-spacing: 0.06em;
+  text-align: center;
+  color: #6c6d66;
+}
+.lamp[data-state='advisory'] {
+  --lamp: var(--advisory);
+}
+.lamp[data-state='caution'] {
+  --lamp: var(--caution);
+}
+.lamp[data-state='warning'] {
+  --lamp: var(--warning);
+}
+.lamp[data-state='advisory'],
+.lamp[data-state='caution'],
+.lamp[data-state='warning'] {
+  background: radial-gradient(ellipse at center, color-mix(in srgb, var(--lamp) 85%, white), var(--lamp));
+  color: #1a1408;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.4), 0 0 14px color-mix(in srgb, var(--lamp) 55%, transparent);
+}
+:root[data-fx='reduced'] .lamp {
+  box-shadow: inset 0 0 0 1px #000;
+}
+
+.master {
+  display: grid;
+  place-items: center;
+  width: 108px;
+  height: 72px;
+  border: 0;
+  border-radius: 6px;
+  background: #3a1a17;
+  box-shadow:
+    inset 0 0 0 2px #120806,
+    0 3px 0 #120806,
+    0 4px 6px rgba(0, 0, 0, 0.6);
+  color: #7d4a44;
+  font: 700 var(--fs-2) / 1.1 var(--font-panel);
+  letter-spacing: 0.08em;
+  cursor: pointer;
+}
+.master[data-active='true'] {
+  background: radial-gradient(ellipse at center, #ff7a6f, var(--warning));
+  color: #2a0603;
+  box-shadow:
+    inset 0 0 0 2px #120806,
+    0 3px 0 #120806,
+    0 0 26px rgba(255, 59, 47, 0.6);
+}
+:root[data-fx='full'] .master[data-active='true'] {
+  animation: master-flash 0.9s steps(1) infinite;
+}
+@keyframes master-flash {
+  50% {
+    background: #3a1a17;
+    color: #7d4a44;
+    box-shadow: inset 0 0 0 2px #120806, 0 3px 0 #120806;
+  }
+}
+.master:active {
+  transform: translateY(2px);
+}
+
+/* ───────────────────────── Teletype log ───────────────────────── */
+.log {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 220px;
+  overflow-y: auto;
+  font: var(--fs-4) / 1.15 var(--font-crt);
+  scrollbar-color: var(--phosphor-dim) transparent;
+}
+.log__time {
+  color: var(--phosphor-dim);
+  margin-right: 0.6em;
+}
+.log__line--caution {
+  color: var(--caution);
+}
+.log__line--warning {
+  color: var(--warning);
+}
+.log__caret::after {
+  content: '█';
+  margin-left: 2px;
+}
+:root[data-fx='full'] .log__caret::after {
+  animation: caret 1s steps(1) infinite;
+}
+@keyframes caret {
+  50% { opacity: 0; }
+}
+
+/* ───────────────────────── Dialog ───────────────────────── */
+.dialog {
+  width: min(520px, calc(100vw - 32px));
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--engrave);
+}
+.dialog::backdrop {
+  background: rgba(5, 6, 5, 0.72);
+}
+.dialog .panel {
+  padding-top: var(--space-6);
+}
+.dialog__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+/* ───────────────────────── Push button ───────────────────────── */
+.btn {
+  min-height: 40px;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #2f302d, #1f201d);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 2px 0 #121311,
+    0 3px 4px rgba(0, 0, 0, 0.5);
+  color: var(--engrave);
+  font: 700 var(--fs-2) / 1 var(--font-panel);
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+.btn:active {
+  transform: translateY(2px);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+.btn--primary {
+  color: var(--amber);
+}
+.btn--danger {
+  color: var(--warning);
+}
+
+/* ───────────────────────── Design bench page ───────────────────────── */
+.bench {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: var(--space-5) var(--space-4) var(--space-6);
+}
+.bench__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+.bench__title {
+  margin: 0;
+  font: 700 var(--fs-6) / 1 var(--font-panel);
+  letter-spacing: 0.06em;
+  color: var(--engrave);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.7), 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+.bench__sub {
+  margin: var(--space-2) 0 0;
+  max-width: 60ch;
+  color: var(--engrave-dim);
+}
+.bench__head-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+.bench__head-controls .btn {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+.bench__grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-4);
+}
+.bench__grid > .panel {
+  grid-column: span 6;
+}
+.bench__grid > .bench__mfd {
+  grid-column: span 7;
+}
+.bench__grid > .bench__mfd + .panel {
+  grid-column: span 5;
+}
+.bench__grid > .bench__cw {
+  grid-column: span 7;
+}
+.bench__grid > .bench__log {
+  grid-column: span 5;
+}
+.bench__row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: var(--space-4);
+  margin-top: var(--space-3);
+}
+.bench__row--start {
+  justify-content: flex-start;
+}
+.bench__readouts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-2);
+}
+.bench__cw-inner {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-4);
+  align-items: start;
+  margin-top: var(--space-2);
+}
+.hud-sample {
+  display: grid;
+  gap: 2px;
+}
+.hud-sample__tape {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 4px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid var(--phosphor);
+}
+
+@media (max-width: 900px) {
+  .bench__grid > .panel,
+  .bench__grid > .bench__mfd,
+  .bench__grid > .bench__mfd + .panel,
+  .bench__grid > .bench__cw,
+  .bench__grid > .bench__log {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 520px) {
+  .bench__readouts {
+    grid-template-columns: 1fr;
+  }
+  .bench__cw-inner {
+    grid-template-columns: 1fr;
+  }
+  .crt__glass {
+    font-size: var(--fs-4);
+  }
+}
