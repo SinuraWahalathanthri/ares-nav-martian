@@ -23,19 +23,21 @@ Rover stops for sols 4540–4800 span lat −4.8087 to −4.7978, lon 137.3791 t
 - Box: lat −4.8313 to −4.7807, lon 137.3557 to 137.4063 (≈ 3 km × 3 km)
 - Fully inside the Trek HiRISE mosaic and the USGS 1 m DEM coverage (137.12–137.73°E, −4.93 to −4.25°).
 
-## Waypoints (provisional — refine against the DEM in Phase 1)
-Defined in [`app/src/lib/site.ts`](../app/src/lib/site.ts).
+## Waypoints (set by the Phase 1 pipeline)
+Defined in [`app/src/lib/site.ts`](../app/src/lib/site.ts) and checked by `pipeline/validate.py`. Walks are the reference Dijkstra route on a 4 m grid from the habitat.
 
-| ID | Name | Position | Basis |
-|---|---|---|---|
-| HAB-1 | Habitat | −4.799847, 137.383541 | Curiosity stop sol 4560; known-traversable ground. Needs a flatness check on the DEM |
-| SO-1 | Boxwork Ridge | −4.808008, 137.381004 | Ridge drill campaign, sols 4711–4752 |
-| SO-2 | Nodule Outcrop | −4.806538, 137.379338 | Nodule close-up, sol 4636 |
-| SO-3 | Fresh Crater Ejecta | TBD | Digitize a small fresh crater from HiRISE |
-| SO-4 | Dune Margin | TBD | Low thermal inertia / dark sand in HiRISE |
-| SO-5 | Upslope Ridge Shelter | −4.812015, 137.382037 | Curiosity stop sol 4851 |
+| ID | Name | Position | Walk from HAB-1 | Basis |
+|---|---|---|---|---|
+| HAB-1 | Habitat | −4.797546, 137.384531 | — | Flattest hazard-free 50 m pad within 400 m of the sol 4560 stop (mean slope 2.9°, max 6.0°). The original spot averaged 7.3° |
+| SO-1 | Boxwork Ridge | −4.808008, 137.381004 | 767 m, max 18° | Ridge drill campaign, sols 4711–4752 |
+| SO-2 | Nodule Outcrop | −4.806639, 137.379284 | 795 m, max 19° | Nodule close-up, sol 4636; moved 7 m off flagged ground |
+| SO-3 | Fresh Crater Ejecta | −4.782548, 137.359242 | 3,058 m, max 25° | 19 m crater, 4.3 m deep (d/D 0.22, so young) |
+| SO-4 | Dune Margin | −4.797461, 137.357285 | 3,058 m, max 24° | Edge of a 7,800 m² dark sand patch |
+| SO-5 | Upslope Ridge Shelter | −4.812015, 137.382037 | 956 m, max 13° | Curiosity stop, sol 4851 |
 
-The habitat to SO-1 is about 0.5 km, so the base loop is short. SO-3 and SO-4 should be placed 1–2 km out so the route planner and the walk-back boundary have something meaningful to work with.
+SO-3 and SO-4 are a long out-and-back to the north-west (about 3 km each way). That suits a rover-assisted profile; a walking-only EVA would cover HAB → SO-1/SO-2/SO-5.
+
+![Phase 1 hazard map](img/phase1-hazards.jpg)
 
 ## POV imagery to collect (Phase 0 T0.5 → finished in Phase 6)
 - NASA Image Library: PIA26559 (first 360° boxwork view), PIA26558 (fractured boxwork close-up), PIA26560, PIA26680, PIA26306 (HiRISE).

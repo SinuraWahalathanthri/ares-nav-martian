@@ -13,7 +13,7 @@ Status key: ✅ works from the browser · 🟡 works, but only through the offli
 | L1 CTX Curiosity site | `.../curiosity_ctx_mosaic` | ✅ | PNG, 13 levels |
 | L2 HiRISE Curiosity site | `.../curiosity_hirise_mosaic` | ✅ | PNG; **z16 (~0.6 m/px) confirmed over the boxwork** (ridges clearly visible); z17/z18 return 404 at the site |
 | L3 HiRISE Gale DEM 1 m | `.../Gale_DEM_SMG_1m` | ✅ | PNG tiles (visual); real elevations come from the USGS GeoTIFF below |
-| L5 THEMIS day / night IR | `.../THEMIS_DayIR_ControlledMosaics_100m_v2_oct2018`, `.../THEMIS_NightIR_ControlledMosaics_100m_v2_oct2018` (the older `Mars_MO_THEMIS-IR-*` names return 404) | ✅ capabilities / ⚠ tiles | Capabilities load, but it uses a **different TileMatrixSet** from the other layers, so the standard `default028mm/z/y/x` URL returns 404. Read its capabilities XML in Phase 3 |
+| L5 THEMIS day / night IR | `.../THEMIS_DayIR_ControlledMosaics_100m_v2_oct2018`, `.../THEMIS_NightIR_ControlledMosaics_100m_v2_oct2018` (the older `Mars_MO_THEMIS-IR-*` names return 404) | ✅ | Same `default028mm` grid as other layers, but the **maximum zoom is 9** (~81 m/px at the site); z10+ returns 404. Fetched into the data pack by `pipeline/fetch.py` |
 | L6 TES albedo | `.../Mars_MGS_TES_Albedo_mosaic_global_7410m` | ✅ | Coarse (7.4 km) context only |
 | Trek catalog search | `trek.nasa.gov/mars/TrekServices/ws/index/eq/searchItems?key=…` | ✅ | Solr JSON; used to discover the layer IDs above |
 | L10 MSL waypoints | `mars.nasa.gov/mmgis-maps/MSL/Layers/json/MSL_waypoints.json` | ✅ | 1,386 GeoJSON points, latest sol 5045; lat/lon/elevation/roll/pitch/yaw per stop |

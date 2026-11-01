@@ -273,12 +273,12 @@ martian-map/
 - [x] T0.5 Collect POV images (Navcam/Mastcam) near each waypoint with coordinates & credits.
 - **Done when:** data-source doc complete, site & waypoints fixed, empty app runs locally.
 
-### Phase 1 — Data Pipeline & Data Pack
-- [ ] T1.1 Fetch scripts (Section 9.1).
-- [ ] T1.2 Reproject/clip; derive slope/roughness/hillshade/contours.
-- [ ] T1.3 Hazard masks: craters (catalog + HiRISE digitized), rocks, soft sand (TI/dunes).
-- [ ] T1.4 Per-profile cost grids; export binary + manifest.
-- [ ] T1.5 Local XYZ tiles and Three.js heightfield.
+### Phase 1 — Data Pipeline & Data Pack ✅ (2026-11-01; cost model lives in the app (Phase 4), the pack ships its inputs; CRISM/geologic units deferred to "Should")
+- [x] T1.1 Fetch scripts (Section 9.1).
+- [x] T1.2 Reproject/clip; derive slope/roughness/hillshade/contours.
+- [x] T1.3 Hazard masks: craters (catalog + HiRISE digitized), rocks, soft sand (TI/dunes).
+- [x] T1.4 Per-profile cost grids; export binary + manifest.
+- [x] T1.5 Local XYZ tiles and Three.js heightfield.
 - **Done when:** `app/public/data/gale/site.json` loads with ≥7 layers and passes validation.
 
 ### Phase 2 — Retro Design System

@@ -1,0 +1,255 @@
+{
+  "id": "gale-boxwork",
+  "name": "Gale Crater \u00b7 Mount Sharp Boxwork",
+  "generated": "2026-11-01",
+  "center": {
+    "lat": -4.806,
+    "lon": 137.381
+  },
+  "bounds": {
+    "lonlat": [
+      137.35569868719756,
+      -4.831286993524327,
+      137.40629363116705,
+      -4.78069204955484
+    ],
+    "projected": [
+      8141717.492786024,
+      -286373.075189438,
+      8144716.492786024,
+      -283374.075189438
+    ],
+    "crs": "Mars 2000 sphere, equirectangular, standard parallel 0 (IAU 49910 equivalent); metres = degrees \u00d7 59274.6975"
+  },
+  "ground_scale_x": 0.9964840910623741,
+  "elevation_range_m": [
+    -4012.83837890625,
+    -3322.614013671875
+  ],
+  "nav_grid": {
+    "resolution_m": 2,
+    "width": 1499,
+    "height": 1499,
+    "origin": "top-left (north-west)",
+    "layers": {
+      "elevation": {
+        "file": "grids/elevation.bin",
+        "dtype": "uint16",
+        "width": 1499,
+        "height": 1499,
+        "decode": "value * 0.01052931 + -4012.687",
+        "units": "m (areoid)"
+      },
+      "slope": {
+        "file": "grids/slope.bin",
+        "dtype": "uint8",
+        "width": 1499,
+        "height": 1499,
+        "decode": "value / 4",
+        "units": "degrees (max within cell)"
+      },
+      "roughness": {
+        "file": "grids/roughness.bin",
+        "dtype": "uint8",
+        "width": 1499,
+        "height": 1499,
+        "decode": "value / 100",
+        "units": "m RMS local relief"
+      },
+      "rock_density": {
+        "file": "grids/rock_density.bin",
+        "dtype": "uint8",
+        "width": 1499,
+        "height": 1499,
+        "decode": "value / 255",
+        "units": "fraction of rocky ground (heuristic)"
+      },
+      "thermal_night": {
+        "file": "grids/thermal_night.bin",
+        "dtype": "uint8",
+        "width": 1499,
+        "height": 1499,
+        "decode": "value",
+        "units": "THEMIS night IR brightness (thermal inertia proxy, 0\u2013255)"
+      },
+      "hazard": {
+        "file": "grids/hazard.bin",
+        "dtype": "uint8",
+        "width": 1499,
+        "height": 1499,
+        "decode": "bitmask",
+        "bits": {
+          "steep": 1,
+          "impassable": 2,
+          "rocky": 4,
+          "sand": 8,
+          "crater": 16,
+          "rim": 32
+        }
+      }
+    }
+  },
+  "thresholds": {
+    "slope_hard_deg": 15.0,
+    "slope_max_deg": 25.0,
+    "rough_hazard_m": 0.35
+  },
+  "overlays": {
+    "hillshade": {
+      "file": "overlays/hillshade.jpg",
+      "bounds_projected": [
+        8141717.492786024,
+        -286373.075189438,
+        8144716.492786024,
+        -283374.075189438
+      ]
+    },
+    "slope": {
+      "file": "overlays/slope.png",
+      "bounds_projected": [
+        8141717.492786024,
+        -286373.075189438,
+        8144716.492786024,
+        -283374.075189438
+      ]
+    },
+    "roughness": {
+      "file": "overlays/roughness.png",
+      "bounds_projected": [
+        8141717.492786024,
+        -286373.075189438,
+        8144716.492786024,
+        -283374.075189438
+      ]
+    },
+    "elevation": {
+      "file": "overlays/elevation.png",
+      "bounds_projected": [
+        8141717.492786024,
+        -286373.075189438,
+        8144716.492786024,
+        -283374.075189438
+      ]
+    },
+    "contours": {
+      "file": "overlays/contours.png",
+      "bounds_projected": [
+        8141717.492786024,
+        -286373.075189438,
+        8144716.492786024,
+        -283374.075189438
+      ]
+    },
+    "hazards": {
+      "file": "overlays/hazards.png",
+      "bounds_projected": [
+        8141717.492786024,
+        -286373.075189438,
+        8144716.492786024,
+        -283374.075189438
+      ]
+    },
+    "thermal_day": {
+      "file": "overlays/thermal_day.png",
+      "bounds_projected": [
+        8141717.492786024,
+        -286373.075189438,
+        8144716.492786024,
+        -283374.075189438
+      ]
+    },
+    "thermal_night": {
+      "file": "overlays/thermal_night.png",
+      "bounds_projected": [
+        8141717.492786024,
+        -286373.075189438,
+        8144716.492786024,
+        -283374.075189438
+      ]
+    },
+    "ortho": {
+      "file": "overlays/ortho_1m.jpg",
+      "bounds_projected": [
+        8141717.492786024,
+        -286373.075189438,
+        8144716.492786024,
+        -283374.075189438
+      ]
+    }
+  },
+  "ortho_tiles": {
+    "url": "tiles/{z}/{y}/{x}.jpg",
+    "tile_size": 256,
+    "resolutions_m": [
+      16.0,
+      8.0,
+      4.0,
+      2.0,
+      1.0,
+      0.5
+    ],
+    "origin_projected": [
+      8141717.492786024,
+      -283374.075189438
+    ]
+  },
+  "terrain": {
+    "height": "terrain/height.bin",
+    "size": [
+      1024,
+      1024
+    ],
+    "dtype": "uint16",
+    "decode": "value * 0.01052906 + -4012.649",
+    "texture": "terrain/texture.jpg",
+    "extent_m": [
+      2988.45578909606,
+      2999.0
+    ]
+  },
+  "vectors": {
+    "craters": "vectors/craters.geojson",
+    "sand": "vectors/sand.geojson",
+    "msl_stops": "vectors/msl_stops.geojson",
+    "msl_traverse": "vectors/msl_traverse.geojson"
+  },
+  "stats": {
+    "craters": 196,
+    "sand_patches": 39,
+    "rocky_pct": 2.5,
+    "impassable_pct": 15.86,
+    "steep_pct": 37.96
+  },
+  "sources": [
+    {
+      "layer": "elevation, slope, roughness, contours, hillshade, craters",
+      "data": "MSL Gale Merged DEM 1 m v3 (HRSC/CTX/HiRISE tied to MOLA)",
+      "credit": "USGS Astrogeology / NASA / JPL-Caltech / University of Arizona",
+      "url": "https://astrogeology.usgs.gov/search/map/mars_msl_gale_merged_dem_1m"
+    },
+    {
+      "layer": "orthophoto, rock texture, sand",
+      "data": "MSL Gale Merged Orthophoto Mosaic 25 cm v3 (MRO HiRISE)",
+      "credit": "NASA / JPL-Caltech / University of Arizona / USGS",
+      "url": "https://planetarymaps.usgs.gov/mosaic/Mars/MSL/"
+    },
+    {
+      "layer": "thermal day/night",
+      "data": "Mars Odyssey THEMIS IR controlled mosaics 100 m v2 (via Mars Trek)",
+      "credit": "NASA / JPL-Caltech / Arizona State University",
+      "url": "https://trek.nasa.gov/mars/"
+    },
+    {
+      "layer": "Curiosity stops & traverse",
+      "data": "MSL MMGIS waypoints and traverse",
+      "credit": "NASA / JPL-Caltech",
+      "url": "https://mars.nasa.gov/mmgis-maps/MSL/"
+    }
+  ],
+  "method_notes": {
+    "craters": "Depressions found by morphological closing (21/61/121 m) of the smoothed DEM; kept if \u22651 m deep, 8\u2013250 m across and near-circular.",
+    "rocky": "Sub-metre orthophoto brightness variance (>1.8\u00d7 site median) coinciding with DEM relief; density over 11 m window >0.35.",
+    "sand": "Dark (\u22120.8\u03c3 vs 60 m surroundings), smooth, <12\u00b0 ground; patches \u2265300 m\u00b2.",
+    "thermal": "THEMIS night IR brightness is a qualitative thermal-inertia proxy: bright at night = rock/bedrock, dark = loose fines."
+  }
+}

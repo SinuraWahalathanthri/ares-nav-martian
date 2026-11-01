@@ -1,3 +1,4 @@
 rasterio>=1.5.2
 numpy>=2.4
 pillow>=12
+scipy>=1.16

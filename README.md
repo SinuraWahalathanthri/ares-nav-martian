@@ -17,6 +17,6 @@ npm run dev
 Optional: copy `app/.env.example` to `app/.env.local` and add a free key from https://api.nasa.gov.
 
 ## Status
-Phase 0 (research and setup) complete. Next: Phase 1, the data pipeline.
+Phases 0–1 complete: data sources verified, site chosen, data pack built (`pipeline/`). Next: Phase 2, the retro design system.
 
 Data credits: NASA/JPL-Caltech, MSSS, University of Arizona (HiRISE), ASU (THEMIS), USGS Astrogeology, NASA Mars Trek. This project is not endorsed by NASA.
