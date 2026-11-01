@@ -1,0 +1,43 @@
+/* Design tokens from TASK-PLAN.md §5. The full design system arrives in Phase 2. */
+:root {
+  --phosphor-amber: #ffb000;
+  --phosphor-green: #33ff66;
+  --mars-rust: #c1440e;
+  --caution: #ffd23f;
+  --warning: #ff3b30;
+  --crt-black: #0a0806;
+  --panel: #15110d;
+  --grid: rgba(255, 176, 0, 0.12);
+  --mono: 'VT323', 'Share Tech Mono', ui-monospace, Consolas, monospace;
+
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--crt-black);
+  color: var(--phosphor-amber);
+  font-family: var(--mono);
+}
+
+.crt {
+  min-height: 100vh;
+  padding: 24px 16px;
+  background:
+    repeating-linear-gradient(to bottom, transparent 0 2px, rgba(0, 0, 0, 0.35) 2px 3px),
+    radial-gradient(ellipse at center, #1a120a 0%, var(--crt-black) 75%);
+}
+
+.boot {
+  margin: 0 auto;
+  max-width: 72ch;
+  font-size: 18px;
+  line-height: 1.35;
+  white-space: pre-wrap;
+  text-shadow: 0 0 6px rgba(255, 176, 0, 0.6);
+}
