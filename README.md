@@ -17,6 +17,8 @@ npm run dev
 Optional: copy `app/.env.example` to `app/.env.local` and add a free key from https://api.nasa.gov.
 
 ## Status
-Phases 0–3 complete: data sources verified, site chosen, data pack built (`pipeline/`), retro design system (`#/design`), and the boot → mission select → planning console flow with a 16-layer map, terrain readout and data credits (`#/credits`). Next: Phase 4, the route navigator.
+Phases 0–3 complete: data sources verified, site chosen, data pack built (`pipeline/`), retro design system (`#/design`), the boot → mission select → planning console flow with a 16-layer map, terrain readout and data credits (`#/credits`), and the route navigator (safest / fastest / max-science routes, EVA oxygen and dose budget, safe-return area, elevation profile). Next: Phase 5, conditions and alerts.
+
+Run the tests with `cd app && npm test`.
 
 Data credits: NASA/JPL-Caltech, MSSS, University of Arizona (HiRISE), ASU (THEMIS), USGS Astrogeology, NASA Mars Trek. This project is not endorsed by NASA.

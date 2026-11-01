@@ -296,13 +296,13 @@ martian-map/
 - [x] T3.6 Data Sources & Credits screen.
 - **Done when:** user can explore Gale site with ≥3 layer types blended and read values under cursor.
 
-### Phase 4 — Route Navigator (M4)
-- [ ] T4.1 A* Web Worker over cost grid; path smoothing.
-- [ ] T4.2 Waypoint editing (click to add/drag/reorder), habitat marker.
-- [ ] T4.3 Mission profile cost variants; safest/fastest/max-science alternatives.
-- [ ] T4.4 EVA budget model (consumables, metabolic, dose, sun) + walk-back boundary polygon.
-- [ ] T4.5 Route summary + elevation/hazard profile chart.
-- [ ] T4.6 Unit tests for cost functions, A*, Mars24 time, EVA budget.
+### Phase 4 — Route Navigator (M4) ✅ (2026-11-01; corridor A* + leg/field caches: edits re-plan in 0.1–0.6 s, first max-science plan ~1.4 s; Mars24 tests move to Phase 5 with the clock)
+- [x] T4.1 A* Web Worker over cost grid; path smoothing.
+- [x] T4.2 Waypoint editing (click to add/drag/reorder), habitat marker.
+- [x] T4.3 Mission profile cost variants; safest/fastest/max-science alternatives.
+- [x] T4.4 EVA budget model (consumables, metabolic, dose, sun) + walk-back boundary polygon.
+- [x] T4.5 Route summary + elevation/hazard profile chart.
+- [x] T4.6 Unit tests for cost functions, A*, Mars24 time, EVA budget.
 - **Done when:** route from hab through 5 waypoints avoids all hard-masked hazards, stays inside walk-back boundary, recomputes < 1 s.
 
 ### Phase 5 — Conditions & Alerts (M6, M10)

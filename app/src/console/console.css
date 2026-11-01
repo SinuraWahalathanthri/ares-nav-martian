@@ -322,7 +322,6 @@
   }
   .console__side {
     grid-column: 1 / -1;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     overflow: visible;
   }
 }

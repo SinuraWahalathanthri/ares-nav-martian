@@ -6,7 +6,11 @@ import { MapView, type CursorInfo } from '../map/MapView'
 import { formatLmst, PROFILES, useStore } from '../state/store'
 import { LayerStack } from './LayerStack'
 import { CursorReadout, WaypointPanel } from './Readout'
+import { RoutePanel } from './RoutePanel'
+import { ElevationProfile } from './ElevationProfile'
+import { usePlanner } from '../route/usePlanner'
 import './console.css'
+import './route.css'
 
 /** Habitat planning console (M2): layer stack, map, terrain readout, waypoints. */
 export default function Console() {
@@ -17,6 +21,8 @@ export default function Console() {
   const mission = useStore((s) => s.mission)
   const { fx, setFx } = useFx()
   const [lightTime] = useState(() => oneWayLightTimeS())
+  const [tab, setTab] = useState<'route' | 'terrain'>('route')
+  usePlanner()
 
   useEffect(() => {
     loadManifest().then(setSite, (e: Error) => setError(e.message))
@@ -74,10 +80,24 @@ export default function Console() {
           <LayerStack />
           <div className="console__map">
             <MapView site={site} onCursor={setCursor} />
+            <ElevationProfile />
           </div>
           <div className="console__side">
-            <CursorReadout cursor={cursor} grids={grids} site={site} />
-            <WaypointPanel />
+            <div className="side-tabs" role="tablist" aria-label="Side panel">
+              {(['route', 'terrain'] as const).map((k) => (
+                <button key={k} type="button" role="tab" className="mfd-key" aria-selected={tab === k} onClick={() => setTab(k)}>
+                  {k === 'route' ? 'ROUTE' : 'TERRAIN'}
+                </button>
+              ))}
+            </div>
+            {tab === 'route' ? (
+              <RoutePanel />
+            ) : (
+              <>
+                <CursorReadout cursor={cursor} grids={grids} site={site} />
+                <WaypointPanel />
+              </>
+            )}
           </div>
         </div>
       )}

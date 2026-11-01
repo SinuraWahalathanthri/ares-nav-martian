@@ -31,7 +31,7 @@ export const LAYERS = [
     id: 'mola',
     name: 'Global relief',
     type: 'topographic',
-    source: { kind: 'trek', url: TREK_LAYERS.molaColorShade, maxZoom: 9, ext: 'jpg' },
+    source: { kind: 'trek', url: TREK_LAYERS.molaColorShade, maxZoom: 8, ext: 'jpg' },
     mission: 'Mars Global Surveyor · MOLA',
     credit: 'NASA / JPL-Caltech / GSFC',
     about: 'Laser-altimeter relief of the whole planet, for context when zoomed out.',
